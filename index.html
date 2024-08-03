@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartec - Soluciones Tecnologicas Innovadoras</title>
+    <meta name="description" content="Smartec ofrece soluciones tecnologicas avanzadas en desarrollo de software, aplicaciones empresariales y mas.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --light-text-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--secondary-color);
+        }
+
+        .header-text h2 {
+            font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            font-weight: 300;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--light-text-color);
+            max-width: 600px;
+        }
+
+        .profile-container {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: auto;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-name {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background-color: #fff;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-areas {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .expertise-item {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1 1 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: var(--background-color);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+        }
+
+        .projects-grid, .casos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card, .caso-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover, .caso-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card-header, .caso-titulo {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .project-card-body, .caso-descripcion {
+            padding: 1.5rem;
+        }
+
+        .caso-imagen {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .entertainment-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .entertainment-column {
+            text-align: center;
+        }
+
+        .social-image {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-image:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #contactForm input, #contactForm button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #contactForm button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contactForm button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-container {
+                margin-top: 2rem;
+            }
+            .expertise-areas {
+                flex-direction: column;
+            }
+            .entertainment-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-text h1 {
+                font-size: 2rem;
+            }
+            .header-text h2 {
+                font-size: 1.2rem;
+            }
+            .header-text p {
+                font-size: 0.9rem;
+            }
+            .profile-image {
+                width: 150px;
+            }
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+        }
+        .entertainment-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .entertainment-column {
+            flex: 1 1 20%;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .social-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .owner-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .owner-info img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .entertainment-section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .entertainment-column {
+            flex: 1 1 20%;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .social-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .owner-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .owner-info img {
+            width: 120px; /* Ajusta el ancho de la imagen segun tus necesidades */
+            height: 140px; /* Ajusta la altura de la imagen segun tus necesidades */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-text">
+                <h1>Smartec</h1>
+                <h2>Soluciones Tecnologicas Avanzadas</h2>
+                <p>Transformando ideas en realidades digitales a traves del desarrollo de software innovador y soluciones tecnologicas de vanguardia.</p>
+            </div>
+            <div class="profile-container">
+                <img src="1234.png" alt="Logo de Smartec" class="profile-image">
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#tecnologias">Tecnologias</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#casos-exito">Casos de Exito</a></li>
+            <li><a href="#entretenimiento">Redes Sociales</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="expertise-areas">
+            <div class="expertise-item">Desarrollo de Software</div>
+            <div class="expertise-item">Aplicaciones Empresariales</div>
+            <div class="expertise-item">Soluciones Web y Moviles</div>
+            <div class="expertise-item">Inteligencia Artificial y Big Data</div>
+        </div>
+        <section id="sobre-nosotros">
+            <h2>Sobre Nosotros</h2>
+            <p>Smartec es una empresa lider en desarrollo de software, comprometida con la innovacion y la excelencia tecnologica. Nuestro equipo de ingenieros altamente capacitados se especializa en crear soluciones digitales eficientes y seguras que resuelven problemas complejos en diversas industrias.</p>
+        </section>
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <ul>
+                <li>Desarrollo de software personalizado para empresas de todos los tamanos.</li>
+                <li>Creacion de aplicaciones web y moviles innovadoras y escalables.</li>
+                <li>Implementacion de soluciones de inteligencia artificial y aprendizaje automatico.</li>
+                <li>Desarrollo de sistemas embebidos y aplicaciones de tiempo real.</li>
+                <li>Consultoria en arquitectura de sistemas y mejores practicas de desarrollo.</li>
+            </ul>
+        </section>
+        <section id="tecnologias">
+            <h2>Tecnologias que Utilizamos</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Desarrollo Web Full-Stack</div>
+                <div class="skill-item">JavaScript / TypeScript</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Java</div>
+                <div class="skill-item">C++ / C#</div>
+                <div class="skill-item">React / Angular / Vue.js</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Bases de Datos SQL y NoSQL</div>
+                <div class="skill-item">DevOps y CI/CD</div>
+                <div class="skill-item">Cloud Computing (AWS, Azure, GCP)</div>
+                <div class="skill-item">Machine Learning y Data Science</div>
+                <div class="skill-item">Ciberseguridad</div>
+            </div>
+        </section>
+        <section id="proyectos">
+            <h2>Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-header">Sistema de Monitoreo IoT</div>
+                    <div class="project-card-body">
+                        <p>Sistema de monitoreo en tiempo real para plantas industriales utilizando IoT, mejorando la eficiencia y seguridad de los procesos.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-header">Plataforma E-learning IA</div>
+                    <div class="project-card-body">
+                        <p>Plataforma de e-learning con componentes de IA para personalizacion de contenidos, adaptandose a las necesidades individuales de cada estudiante.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-header">Seguridad Biometrica</div>
+                    <div class="project-card-body">
+                        <p>Implementacion de seguridad biometrica en sistemas de acceso empresariales, aumentando la proteccion y facilitando la gestion de accesos.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-header">Compilador Optimizado</div>
+                    <div class="project-card-body">
+                        <p>Desarrollo de un compilador optimizado para un lenguaje de programacion especializado, mejorando el rendimiento de aplicaciones criticas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="casos-exito">
+            <h2>Casos de Exito</h2>
+            <div class="casos-grid">
+                <div class="caso-card">
+                    <img src="gestion.png" alt="Sistema de Gestion Empresarial" class="caso-imagen">
+                    <div class="caso-contenido">
+                        <h3 class="caso-titulo">Sistema de Gestion Empresarial</h3>
+                        <p class="caso-descripcion">Implementacion de un sistema ERP personalizado para una empresa manufacturera, resultando en un aumento del 30% en la eficiencia operativa y una reduccion del 20% en costos de inventario.</p>
+                    </div>
+                </div>          <div class="caso-card">
+                    <img src="comer.png" alt="Plataforma E-commerce" class="caso-imagen">
+                    <div class="caso-contenido">
+                        <h3 class="caso-titulo">Plataforma E-commerce</h3>
+                        <p class="caso-descripcion">Desarrollo de una plataforma de comercio electronico escalable para una cadena minorista, lo que llevo a un incremento del 150% en ventas en linea y una mejora del 40% en la satisfaccion del cliente.</p>
+                    </div>
+                </div>
+                <div class="caso-card">
+                    <img src="agri.png" alt="Solucion IoT para Agricultura" class="caso-imagen">
+                    <div class="caso-contenido">
+                        <h3 class="caso-titulo">Solucion IoT para Agricultura</h3>
+                        <p class="caso-descripcion">Implementacion de un sistema IoT para monitoreo y optimizacion de cultivos, resultando en un aumento del 25% en la produccion y una reduccion del 30% en el uso de agua y fertilizantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+     
+        <section id="entretenimiento">
+            <h2>Redes Sociales</h2>
+            <div class="entertainment-section">
+                <div class="entertainment-column">
+                    <h3>YouTube</h3>
+                    <a href="https://www.youtube.com/channel/UCYpu6CYxJuZgM_f8p1DcIkw" target="_blank">
+                        <img src="you.png" alt="YouTube" class="social-image">
+                    </a>
+                </div>
+                <div class="entertainment-column">
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/rodolfo.27/" target="_blank">
+                        <img src="instagram.png" alt="Instagram" class="social-image">
+                    </a>
+                </div>
+                <div class="entertainment-column">
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/rodolfors27/" target="_blank">
+                        <img src="linke.png" alt="LinkedIn" class="social-image">
+                    </a>
+                </div>
+            </div>
+        </section>
+	
+        <section id="propietario">
+            <h2>Propietario</h2>
+            <div class="entertainment-section">
+                <div class="entertainment-column owner-info">
+                    <img src="123.png" alt="Propietario" class="social-image">
+                    <h3>Propietario</h3>
+                    <p><strong>Rodolfo Rojas Soto</strong></p>
+                    <p>Ingeniero en Computacion con una Maestria en Administracion de Negocios. Tengo amplia experiencia en desarrollo de soluciones tecnologicas, administracion de sistemas y bases de datos. Me apasiona la tecnologia y me dedico a mejorar la eficiencia y productividad de las organizaciones a traves de proyectos innovadores.</p>
+                    <p>CPIC 11693</p>
+                </div>
+            </div>
+        </section>
+	 
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <div class="contact-info">
+                <p><strong>Telefono:</strong> +506 8590-8678</p>
+                <p><strong>Email:</strong> rodo.rojas42@gmail.com</p>
+                <p><strong>Ubicacion:</strong> Costa Rica - Pura Vida</p>
+                <p>¿Listo para llevar tu proyecto al siguiente nivel? <a href="#" id="openModal" class="cta-button">Contactanos</a></p>
+            </div>
+        </section>
+    </main>
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Solicitud de Informacion</h2>
+            <form id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Nombre" required>
+                <input type="email" id="email" name="email" placeholder="Correo electronico" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Smartec. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("contactModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle form submission
+        document.getElementById("contactForm").onsubmit = function(e) {
+            e.preventDefault();
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            
+            // Simulacion de envio de correo electronico
+            console.log("Enviando correo a rodo.rojas42@gmail.com");
+            console.log("Contenido: Alguien solicito informacion");
+            console.log("Nombre: " + name);
+            console.log("Email: " + email);
+
+            // Aqui puedes agregar codigo para enviar los datos a un servidor
+            // Por ahora, solo mostraremos un mensaje de exito
+            alert("Gracias por tu interes. Nos pondremos en contacto contigo pronto.");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

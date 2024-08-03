@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laberinto</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid black;
+        }
+        #instructions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">
+        <h2>Laberinto</h2>
+        <p>
+            Usa las flechas ← → ↑ ↓ para moverte<br>
+            Llega a la salida para ganar
+        </p>
+    </div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Player
+        const player = {
+            x: 20,
+            y: 20,
+            size: 20,
+            speed: 5
+        };
+
+        // Maze walls
+        const walls = [
+            { x: 0, y: 0, width: 600, height: 20 }, // Top wall
+            { x: 0, y: 0, width: 20, height: 400 }, // Left wall
+            { x: 580, y: 0, width: 20, height: 400 }, // Right wall
+            { x: 0, y: 380, width: 600, height: 20 }, // Bottom wall
+
+            // Internal walls
+            { x: 100, y: 100, width: 20, height: 200 },
+            { x: 200, y: 100, width: 20, height: 100 },
+            { x: 300, y: 100, width: 20, height: 200 },
+            { x: 400, y: 100, width: 20, height: 100 },
+            { x: 500, y: 100, width: 20, height: 200 },
+            { x: 200, y: 300, width: 320, height: 20 }
+        ];
+
+        // Goal
+        const goal = { x: 580, y: 360, width: 20, height: 20 };
+
+        // Key states
+        const keys = {};
+
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            keys[e.code] = true;
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keys[e.code] = false;
+        });
+
+        function drawPlayer() {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+        }
+
+        function drawWalls() {
+            ctx.fillStyle = 'black';
+            walls.forEach(wall => {
+                ctx.fillRect(wall.x, wall.y, wall.width, wall.height);
+            });
+        }
+
+        function drawGoal() {
+            ctx.fillStyle = 'gold';
+            ctx.fillRect(goal.x, goal.y, goal.width, goal.height);
+        }
+
+        function movePlayer() {
+            if (keys['ArrowLeft']) {
+                player.x -= player.speed;
+            }
+            if (keys['ArrowRight']) {
+                player.x += player.speed;
+            }
+            if (keys['ArrowUp']) {
+                player.y -= player.speed;
+            }
+            if (keys['ArrowDown']) {
+                player.y += player.speed;
+            }
+
+            // Check wall collision
+            walls.forEach(wall => {
+                if (player.y < wall.y + wall.height &&
+                    player.y + player.size > wall.y &&
+                    player.x < wall.x + wall.width &&
+                    player.x + player.size > wall.x) {
+                    // Move back if collision
+                    if (keys['ArrowLeft']) {
+                        player.x += player.speed;
+                    }
+                    if (keys['ArrowRight']) {
+                        player.x -= player.speed;
+                    }
+                    if (keys['ArrowUp']) {
+                        player.y += player.speed;
+                    }
+                    if (keys['ArrowDown']) {
+                        player.y -= player.speed;
+                    }
+                }
+            });
+
+            // Check goal collision
+            if (player.x < goal.x + goal.width &&
+                player.x + player.size > goal.x &&
+                player.y < goal.y + goal.height &&
+                player.y + player.size > goal.y) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'black';
+                ctx.font = '30px Arial';
+                ctx.fillText('¡Has Ganado!', canvas.width / 2 - 100, canvas.height / 2);
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            movePlayer();
+            drawWalls();
+            drawPlayer();
+            drawGoal();
+
+            animationId = requestAnimationFrame(update);
+        }
+
+        let animationId = requestAnimationFrame(update);
+    </script>
+</body>
+</html>
+	
